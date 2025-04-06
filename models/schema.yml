@@ -6,7 +6,51 @@ sources:
     tables:
       - name: sales
         identifier: raw_gz_sales
+        description: sales of Greenwez/ we have on row per product-id found in each orders_id
+        columns:
+          - name: date_date
+            description: date of purchase
+          - name: orders_id
+            description: orrders identifier
+          - name: pdt_id
+            description : product identifier
+          - name: revenue
+            description: les revenues des ventes 
+          - name: quantity
+            description: les quantités de ventes 
+        tests:  
+          - unique:
+             column_name: "(orders_id || '_'|| pdt_id)"
+           
       - name: product
         identifier: raw_gz_product
+        description: product of Greenwez/ 
+        tests:
+            - unique:
+               column_name: "products_id"
+            - not_null:
+               column_name : "products_id"
+        columns:
+          - name: products_id
+            description: les identifiants  des produits
+          - name: purchSE_PRICE 
+            description: le prix des achats
+              
       - name: ship
         identifier: raw_gz_ship
+        description: ship of Greenwez
+        tests:
+           - unique: 
+              column_name :  "orders_id"
+           - not_null:
+              colomn_name : "orders_id"
+          
+        columns:
+          - name: orders_id
+            description: réference 
+          - name: shipping_fee
+            description: stax_amount
+          - name: log_cost
+            description: les prix
+          - name: ship_cost
+            description: ship cost
