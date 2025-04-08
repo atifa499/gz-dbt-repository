@@ -13,7 +13,7 @@ s.quantity,
 ((s.revenue - s.quantity) * p.purchase_price) AS margin
 FROM {{ref("stg_raw__product")}} p
 JOIN {{ref("stg_raw__sales")}} s
-ON p.products_id = s.products_id
+ON p.products_id = s.pdt_id
 
 
 
