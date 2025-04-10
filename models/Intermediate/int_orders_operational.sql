@@ -3,7 +3,11 @@
 
 
 SELECT
-  orders_id,
-  SUM(shipping_fee + log_cost + log_cost + ship_cost) AS operational_margin
-FROM {{ ref("stg_raw__ship") }}
-GROUP BY orders_id
+   p.orders_id,
+   s.pdt_id,
+   s.date_date,
+   SUM(p.shipping_fee + p.log_cost + p.ship_cost) AS operational_margin
+FROM {{ ref("stg_raw__ship") }} p
+INNER JOIN {{ ref("stg_raw__sales") }} s
+  ON p.orders_id = s.orders_id
+GROUP BY p.orders_id, s.pdt_id, s.date_date
