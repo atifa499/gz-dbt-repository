@@ -39,7 +39,7 @@ models:
   my_new_project:
     staging:
       +materialized: view
-    intermediate: 
+    Intermediate: 
       +materialized: table
     mart:
       +materialized: table
