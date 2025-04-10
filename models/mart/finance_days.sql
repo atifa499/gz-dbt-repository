@@ -1,3 +1,5 @@
+{{ config(materialized="view") }}
+
 WITH sales AS (
     SELECT * FROM {{ ref('stg_raw__sales') }}
 ),
